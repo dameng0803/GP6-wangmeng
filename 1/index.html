@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- <div class="box">
+            <div class="img-box">
+                <img src="image/01.jpg" alt="">
+            </div>
+            <div class="msg">
+                <p class="price">￥ 498</p>
+                <p class="title">第一张</p>
+                <button dataid="" class="btn">购买</button>
+            </div>
+        </div> -->
+    </div>
+    <script src="libs/jquery-3.3.1.js"></script>
+
+    <script>
+        function RenderPage(selector) {
+            this.main = document.querySelector(selector);
+            //console.log(this.main);
+            //初始化
+            this.init();
+        }
+        RenderPage.prototype = {
+            constructor: RenderPage,
+            init: function() {
+                var opt = {
+                    //接口地址
+                    url: "http://mce.meilishuo.com/jsonp/get/3?offset=0&frame=1&trace=0&limit=10&endId=0&pid=106888&_=1526528205879",
+                    type: "GET", //用GET请求
+                    dataType: "jsonp", // 返回的数据类型，设置为JSONP方式
+                }
+                $.ajax(opt).then(this.reder);
+
+            },
+            reder(res) {
+                //获取到相应的json数据
+                var res = res.data.list;
+                var listString = "";
+                //forEach遍历数据，渲染页面
+                res.forEach(function(item) {
+                    listString += `<div class="box">
+                                <div class="img-box">
+                                    <img src="${item.image}" alt="">
+                                </div>
+                                <div class="msg">
+                                    <p class="price">￥ ${item.discountPrice}</p>
+                                    <p class="title">${item.title}</p>
+                                    <button dataid="${item.userId}" class="btn">购买</button>
+                                </div>
+                            </div>`
+                    console.log(listString);
+                }.bind(this));
+                //将拼接的字符串放入页面
+                $(".wrap").html(listString)
+
+            }
+        }
+        new RenderPage(".wrap");
+    </script>
+</body>
+
+</html>

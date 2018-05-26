@@ -1,0 +1,70 @@
+div,
+body,
+ul,
+ol,
+img {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+#box {
+    height: 320px;
+    width: 810px;
+    position: relative;
+    margin: 30px auto;
+    overflow: hidden;
+}
+
+ul {
+    width: 4050px;
+    /*多加一个图片的长度实现无缝轮播*/
+    height: 320px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+ul .item {
+    float: left;
+    width: 810px;
+    height: 320px;
+    position: absolute;
+}
+
+ul item .active {
+    left: 0px;
+    z-index: 200;
+}
+
+ul li img {
+    width: 100%;
+    height: 100%;
+}
+
+.btnleft {
+    width: 30px;
+    height: 30px;
+    background: #999;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 999;
+}
+
+.btnRight {
+    width: 30px;
+    height: 30px;
+    background: #999;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 999;
+}
+
+.checked {
+    color: gray;
+}
